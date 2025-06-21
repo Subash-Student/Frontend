@@ -1,18 +1,14 @@
-import React from 'react';
-import TaskItem from './TaskItem';
-import { Typography } from '@mui/material';
+import { Box, Typography } from "@mui/material";
+import TaskItem from "./TaskItem";
+import NoTaskYet from "./NoTaskYet";
 
-const TaskList = ({ tasks }) => {
-  return (
-    <div style={{ marginTop: '2rem' }}>
-      <Typography variant="h5" gutterBottom>
-        Pending Tasks ({tasks.length})
-      </Typography>
-      {tasks.map((task) => (
-        <TaskItem key={task._id} task={task} />
-      ))}
-    </div>
-  );
-};
+const TaskList = ({ tasks, onDelete, onUpdate }) => (
+  <Box mt={4} maxWidth="600px" mx="auto">
+    <Typography variant="h6" gutterBottom>Pending Tasks ({tasks.length})</Typography>
+    {tasks.map.length > 0 ? tasks.map(task => (
+      <TaskItem key={task.id} task={task} onUpdate={onUpdate} onDelete={onDelete} />
+    )) : <NoTaskYet />}
+  </Box>
+);
 
 export default TaskList;
